@@ -1,0 +1,41 @@
+<%- layout("/boilerplate/boilerplate")%>
+    <div class="container mt-3 col-8 offset-2">
+        <div class="card my-3">
+            <h1 class="card-title text-center">
+                <%=info.topic%>
+            </h1>
+            <form action="/notes/<%=info._id%>?_method=PATCH" method="POST">
+                <div class="card-body">
+                    <% info.notes.forEach(function(note,i) { %>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="deleteNotes[]" id="note-<%-i%>"
+                                value="<%=note.id%>">
+                            <label class="form-check-label" for="note-<%i%>">
+                                <%=note.note%>
+                            </label>
+                        </div>
+                        <br>
+                        <% }) %>
+                </div>
+                <div class="d-grid gap-2">
+                    <label for="notes"></label>
+                    <textarea name="notes" id="notes" cols="70" rows="3" placeholder="Enter new note"></textarea>
+                    <button class="btn btn-primary">Remove Selected & Add New Notes</button>
+                </div>
+            </form>
+
+            <form action="/notes/<%=info._id%>?_method=PATCH" method="POST">
+            </form>
+
+            <a class="btn btn-warning" href="<%=info._id%>/edit">Edit</a>
+
+            <form action="/notes/<%=info._id%>?_method=DELETE" method="POST">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-danger">Delete NotePad</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="/javascripts/showpage.js"></script>
