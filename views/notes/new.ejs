@@ -1,0 +1,15 @@
+<%- layout("/boilerplate/boilerplate")%>
+    <h1>New note</h1>
+    <div class="container mb-auto">
+        <form action="/notes" method="POST">
+            <div>
+                <label for="topic">Topic</label>
+                <input type="text" name="topic" id="topic" placeholder="notepad topic">
+            </div>
+            <div>
+                <label for="notes">Notes:</label>
+                <input type="text" name="notes" id="notes">
+            </div>
+            <button>submit</button>
+        </form>
+    </div>

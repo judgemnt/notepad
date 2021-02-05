@@ -1,0 +1,30 @@
+<%- layout("/boilerplate/boilerplate")%>
+    <div class="container mt-3">
+        <h1>
+            <%=info.topic%>
+        </h1>
+        <form action="/notes/<%=info._id%>?_method=PATCH" method="POST">
+            <% info.notes.forEach(function(note,i) { %>
+                <label for="note-<%i%>">
+                    <%=note.note%>
+                </label>
+                <input type="checkbox" name="deleteNotes[]" id="note-<%-i%>" value="<%=note.id%>">
+                <% }) %>
+                    <label for="notes"></label>
+                    <textarea name="notes" id="notes" cols="70" rows="3" placeholder="Enter new note"></textarea>
+                    <br>
+                    <button>Submit Changes</button>
+        </form>
+
+        <form action="/notes/<%=info._id%>?_method=PATCH" method="POST">
+
+        </form>
+
+        <a href="<%=info._id%>/edit"><button>Edit</button></a>
+
+        <form action="/notes/<%=info._id%>?_method=DELETE" method="POST">
+            <button>Delete NotePad</button>
+        </form>
+    </div>
+
+    <script src="/javascripts/showpage.js"></script>

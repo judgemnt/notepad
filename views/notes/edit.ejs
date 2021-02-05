@@ -1,0 +1,15 @@
+<%- layout("/boilerplate/boilerplate")%>
+    <div class="container mt-3">
+        <form action="/notes/<%=info._id%>?_method=PUT" method="POST">
+            <label for="topic">Topic:</label>
+            <input type="text" name="topic" id="topic" value="<%=info.topic%>">
+            <h1>Notes:</h1>
+            <% for (let i=0; i < info.notes.length; i++) {%>
+                <label for="notes[<%=i%>]"></label>
+                <textarea name="notes[<%=i%>]" id="notes[<%=i%>]" cols="50" rows="5"
+                    value="<%=info.notes[i].id%>"><%=info.notes[i].note%></textarea>
+                <br>
+                <% } %>
+                    <button>Submit</button>
+        </form>
+    </div>
