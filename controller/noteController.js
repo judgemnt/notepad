@@ -33,7 +33,7 @@ module.exports.addNote = async (req, res) => {
     const { id } = req.params;
     const page = await Page.findById(id)
     if (req.body.notes) {
-        const page = await Page.findOneAndUpdate(id, { $push: { notes: { note: req.body.notes, id: ObjectID() } } });
+        await page.updateOne({ $push: { notes: { note: req.body.notes, id: ObjectID() } } });
         page.save();
     } if (req.body.deleteNotes) {
         await page.updateOne({ $pull: { notes: { id: { $in: req.body.deleteNotes } } } })
