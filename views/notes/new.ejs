@@ -1,15 +1,21 @@
 <%- layout("/boilerplate/boilerplate")%>
-    <h1>New note</h1>
     <div class="container mb-auto">
-        <form action="/notes" method="POST">
-            <div>
-                <label for="topic">Topic</label>
-                <input type="text" name="topic" id="topic" placeholder="notepad topic">
+        <h1>New note</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/notes" method="POST">
+                    <div class="row col-lg-8 offset-lg-2">
+                        <label for="topic">Topic</label>
+                        <input type="text" name="topic" id="topic" placeholder="notepad topic">
+                    </div>
+                    <div class="row col-lg-8 offset-lg-2">
+                        <label for="notes">Note:</label>
+                        <textarea name="notes" id="notes" cols="30" rows="4"></textarea>
+                    </div>
+                    <div class="row col-lg-8 offset-lg-2">
+                        <button class="btn btn-success">submit</button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <label for="notes">Notes:</label>
-                <input type="text" name="notes" id="notes">
-            </div>
-            <button>submit</button>
-        </form>
+        </div>
     </div>

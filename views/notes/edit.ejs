@@ -4,12 +4,12 @@
             <label for="topic">Topic:</label>
             <input type="text" name="topic" id="topic" value="<%=info.topic%>">
             <h1>Notes:</h1>
-            <% for (let i=0; i < info.notes.length; i++) {%>
-                <label for="notes[<%=i%>]"></label>
-                <textarea name="notes[<%=i%>]" id="notes[<%=i%>]" cols="50" rows="5"
-                    value="<%=info.notes[i].id%>"><%=info.notes[i].note%></textarea>
+            <% info.notes.forEach(function(note,i) { %>
+                <label for="<%=note._id%>"></label>
+                <textarea name="note" id="<%=note._id%>" cols="50" rows="5"
+                    value="<%=note._id%>"><%=note.note%></textarea>
                 <br>
-                <% } %>
+                <% }) %>
                     <button>Submit</button>
         </form>
     </div>

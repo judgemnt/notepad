@@ -4,10 +4,6 @@ const NoteSchema = new Schema({
     note: {
         type: String,
         required: true
-    },
-    id: {
-        type: String,
-        required: true
     }
 })
 const PageSchema = new Schema({
