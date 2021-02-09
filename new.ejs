@@ -1,0 +1,19 @@
+<%- layout("/boilerplate/boilerplate")%>
+    <div class="container mb-auto mt-3">
+        <div class="text-center">
+            <h1>New Notepad</h1>
+        </div>
+        <form action="/notes" method="POST">
+            <div class="row col-lg-8 offset-lg-2">
+                <label for="topic">Topic</label>
+                <input type="text" name="topic" id="topic" placeholder="notepad topic">
+            </div>
+            <div class="row col-lg-8 offset-lg-2">
+                <label for="notes">Note</label>
+                <textarea name="notes" id="notes" cols="30" rows="4"></textarea>
+            </div>
+            <div class="row col-lg-8 offset-lg-2">
+                <button class="btn btn-success">submit</button>
+            </div>
+        </form>
+    </div>
