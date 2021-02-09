@@ -5,6 +5,7 @@ const ejs = require("ejs");
 const engine = require("ejs-mate");
 const methodOverride = require("method-override");
 const noteRoutes = require("./routes/noteRoutes");
+const userRoutes = require("./routes/userRoutes");
 const session = require("express-session");
 const passport = require("passport");
 const localstrategy = require("passport-local");
@@ -44,26 +45,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/notes", noteRoutes);
-
-app.get("/register", (req, res) => {
-    res.render("user/register")
-})
-
-app.post("/register", async (req, res) => {
-    console.log(req.body)
-    const { email, username, password } = req.body;
-    const user = new User({ email, username });
-    const registeredUser = await User.register(user, password);
-    res.redirect("/notes");
-})
-
-app.get("/login", (req, res) => {
-    res.render("user/login")
-})
-
-app.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }), (req, res) => {
-    res.redirect("/notes");
-})
+app.use("/", userRoutes);
 
 app.listen(3000, () => {
     console.log("Connected to 3000");
