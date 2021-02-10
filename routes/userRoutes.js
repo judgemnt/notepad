@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const users = require("../controller/usercontroller");
+const catchAsync = require("../utilities/catchAsync");
 const passport = require("passport");
 
 router.route("/register")
     .get(users.registerForm)
-    .post(users.registerUser)
+    .post(catchAsync(users.registerUser))
 
 router.route("/login")
     .get(users.loginForm)

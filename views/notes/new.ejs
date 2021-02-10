@@ -3,17 +3,31 @@
         <div class="text-center">
             <h1>New Notepad</h1>
         </div>
-        <form action="/notes" method="POST">
+        <form class="needs-validation" action="/notes" method="POST" novalidate>
             <div class="row col-lg-8 offset-lg-2">
-                <label for="topic">Topic</label>
-                <input type="text" name="topic" id="topic" placeholder="notepad topic">
+                <label class="form-label" for="topic">Topic</label>
+                <input class="form-control" type="text" name="topic" id="topic" placeholder="notepad topic" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Topic cannot be empty
+                </div>
             </div>
             <div class="row col-lg-8 offset-lg-2">
-                <label for="notes">Note</label>
-                <textarea name="notes" id="notes" cols="30" rows="4"></textarea>
+                <label class="form-label" for="notes">Note</label>
+                <textarea class="form-control" name="notes" id="notes" cols="30" rows="4" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Notes cannot be empty
+                </div>
             </div>
             <div class="row col-lg-8 offset-lg-2">
                 <button class="btn btn-success">submit</button>
             </div>
         </form>
     </div>
+
+    <script src="/javascripts/validateForm.js"></script>

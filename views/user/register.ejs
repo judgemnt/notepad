@@ -1,12 +1,42 @@
 <%- layout("/boilerplate/boilerplate")%>
 
-    <h1>Register</h1>
-    <form action="/register" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username">
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email">
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
-        <button>Register</button>
-    </form>
+    <div class="card mt-5 col-md-8 offset-md-2">
+        <h1 class="text-center">Register</h1>
+        <div class="card-body">
+            <form class="needs-validation" action="/register" method="POST" novalidate>
+                <div>
+                    <label class="form-label" for="username">Username:</label>
+                    <input class="form-control" type="text" name="username" id="username" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Username cannot be empty
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label" for="email">Email:</label>
+                    <input class="form-control" type="text" name="email" id="email" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Email cannot be empty, email must be valid email
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label" for="password">Password:</label>
+                    <input class="form-control" type="password" name="password" id="password" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Password cannot be empty
+                    </div>
+                </div>
+                <button class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/javascripts/validateForm.js"></script>

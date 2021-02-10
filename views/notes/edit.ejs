@@ -1,18 +1,33 @@
 <%- layout("/boilerplate/boilerplate")%>
     <div class="container mb-auto mt-3">
         <div class="d-flex justify-content-center">
-            <form action="/notes/<%=info._id%>?_method=PUT" method="POST">
-                <label for="topic">
-                    <h1>Topic:</h1>
-                </label>
-                <br>
-                <input type="text" name="topic" id="topic" value="<%=info.topic%>">
+            <form action="/notes/<%=info._id%>?_method=PUT" method="POST" class="needs-validation" novalidate>
+                <div>
+                    <label class="form-label" for="topic">
+                        <h1>Topic:</h1>
+                    </label>
+                    <br>
+                    <input class="form-control" type="text" name="topic" id="topic" value="<%=info.topic%>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Topic cannot be empty
+                    </div>
+                </div>
                 <h1>Notes:</h1>
                 <% info.notes.forEach(function(note,i) { %>
-                    <label for="<%=note._id%>"></label>
-                    <textarea name="note" id="<%=note._id%>" cols="50" rows="5"
-                        value="<%=note._id%>"><%=note.note%></textarea>
-                    <br>
+                    <div>
+                        <label class="form-label" for="<%=note._id%>"></label>
+                        <textarea class="form-control" name="note" id="<%=note._id%>" cols="50" rows="5"
+                            value="<%=note._id%>" required><%=note.note%></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Note cannot be empty
+                        </div>
+                    </div>
                     <% }) %>
                         <div class="container">
                             <div class="row">
@@ -22,3 +37,5 @@
             </form>
         </div>
     </div>
+
+    <script src="/javascripts/validateForm.js"></script>
