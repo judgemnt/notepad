@@ -11,6 +11,7 @@ const session = require("express-session");
 const passport = require("passport");
 const localstrategy = require("passport-local");
 const User = require("./models/userschema");
+const ExpressError = require("./utilities/expressError");
 
 const mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost:27017/notepad', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
@@ -54,6 +55,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/notes", noteRoutes);
 app.use("/", userRoutes);
 
+app.all("*", (req, res, next) => {
+    next(new ExpressError("Page not Found", 404));
+});
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = "Oh no, something went wrong";
+    res.status(statusCode).render("error", { err });
+});
 
 app.listen(3000, () => {
     console.log("Connected to 3000");

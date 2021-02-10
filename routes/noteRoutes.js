@@ -3,19 +3,19 @@ const router = express.Router();
 const Page = require("../models/notepadschema");
 const notes = require("../controller/noteController")
 const catchAsync = require("../utilities/catchAsync");
-
+const { validateNotepad } = require("../middleware");
 
 router.route("/")
-    .get(notes.all)
-    .post(catchAsync(notes.postNew))
+    .get(catchAsync(notes.all))
+    .post(validateNotepad, catchAsync(notes.postNew))
 
 router.get("/new", notes.newForm);
 
 router.route("/:id")
     .get(notes.checkOne)
-    .put(catchAsync(notes.edit))
-    .patch(catchAsync(notes.addNote))
-    .delete(notes.deletePost)
+    .put(validateNotepad, catchAsync(notes.edit))
+    .patch(validateNotepad, catchAsync(notes.addNote))
+    .delete(catchAsync(notes.deletePost))
 
 router.get("/:id/edit", notes.renderEdit)
 

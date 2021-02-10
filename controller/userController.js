@@ -18,5 +18,6 @@ module.exports.loginForm = (req, res) => {
 };
 
 module.exports.loginUser = (req, res) => {
+    req.flash("success", "Welcome back!")
     res.redirect("/notes");
 }

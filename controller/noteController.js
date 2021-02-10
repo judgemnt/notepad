@@ -1,5 +1,4 @@
 const Page = require("../models/notepadschema");
-
 module.exports.all = async (req, res) => {
     const pages = await Page.find({});
     res.render("notes/home", { pages });
@@ -23,7 +22,6 @@ module.exports.checkOne = async (req, res) => {
 
 module.exports.edit = async (req, res) => {
     const { id } = req.params;
-    console.log(req.body.note);
     const info = await Page.findByIdAndUpdate(id, req.body);
     const updateNotes = info.notes.forEach(async function (note, i) {
         if (info.notes[i]._id === info.notes[i]._id && info.notes[i].note !== req.body.note[i]) {
