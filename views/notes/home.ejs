@@ -2,34 +2,35 @@
     <div class="container col-6 offset-3 mt-3">
         <h1 class="text-center">All Notes</h1>
         <% for (let page of pages) {%>
-            <div class="card mb-3">
-                <div class="card-title text-center">
-                    <h1>
-                        <%= page.topic%>
-                    </h1>
+            <% if(page.author.equals(currentUser._id)) { %>
+                <div class="card mb-3">
+                    <div class="card-title text-center">
+                        <h1>
+                            <%= page.topic%>
+                        </h1>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <% if (page.notes.length> 2) { %>
+                            <li class="list-group-item">
+                                <%=page.notes[0].note%>
+                            </li>
+                            <li class="list-group-item">
+                                <%=page.notes[1].note%>
+                            </li>
+                            <li class="list-group-item">
+                                <%=page.notes[2].note%>
+                            </li>
+                            <% } else { %>
+                                <% for (let i=0; i < page.notes.length; i++) {%>
+                                    <li class="list-group-item">
+                                        <%=page.notes[i].note%>
+                                    </li>
+                                    <% }} %>
+                    </ul>
+                    <div class="ms-1 my-3">
+                        <a href="/notes/<%=page._id%>">
+                            <button class="btn btn-primary">See More</button></a>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <% if (page.notes.length> 2) { %>
-                        <li class="list-group-item">
-                            <%=page.notes[0].note%>
-                        </li>
-                        <li class="list-group-item">
-                            <%=page.notes[1].note%>
-                        </li>
-                        <li class="list-group-item">
-                            <%=page.notes[2].note%>
-                        </li>
-                        <% } else { %>
-                            <% for (let i=0; i < page.notes.length; i++) {%>
-                                <li class="list-group-item">
-                                    <%=page.notes[i].note%>
-                                </li>
-                                <% }} %>
-                </ul>
-                <div class="ms-1 my-3">
-                    <a href="/notes/<%=page._id%>">
-                        <button class="btn btn-primary">See More</button></a>
-                </div>
-            </div>
-            <% } %>
+                <% }} %>
     </div>

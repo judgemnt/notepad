@@ -20,7 +20,8 @@ const seedDB = async () => {
                 note: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius quaerat fugit maiores aut tenetur deserunt, sit dolores ducimus voluptate expedita harum laborum voluptatum delectus nesciunt non, dicta beatae sint esse."
             }, {
                 note: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius quaerat fugit maiores aut tenetur deserunt, sit dolores ducimus voluptate expedita harum laborum voluptatum delectus nesciunt non, dicta beatae sint esse."
-            }]
+            }],
+            author: "6026acbd72cfda4cf0b6ca5e"
         })
         await page.save();
     }

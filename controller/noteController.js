@@ -10,6 +10,7 @@ module.exports.newForm = (req, res) => {
 
 module.exports.postNew = async (req, res) => {
     const newPage = new Page({ topic: req.body.topic, notes: { note: req.body.notes } });
+    newPage.author = req.user._id;
     await newPage.save();
     res.redirect("/notes");
 };

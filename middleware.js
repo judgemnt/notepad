@@ -11,8 +11,8 @@ module.exports.validateNotepad = (req, res, next) => {
         throw new ExpressError(msg, 400);
     } else {
         next();
-    }
-}
+    };
+};
 
 module.exports.validateUser = (req, res, next) => {
     const { error } = userSchema.validate(req.body);
@@ -21,8 +21,8 @@ module.exports.validateUser = (req, res, next) => {
         throw new ExpressError(msg, 400);
     } else {
         next();
-    }
-}
+    };
+};
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -31,5 +31,16 @@ module.exports.isLoggedIn = (req, res, next) => {
         return res.redirect("/login");
     } else {
         next();
-    }
+    };
+};
+
+module.exports.isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    const note = await Page.findById(id);
+    if (!note.author.equals(req.user._id)) {
+        req.flash("error", "You do not own that");
+        res.redirect(`/notes/${id}`);
+    } else {
+        next();
+    };
 };

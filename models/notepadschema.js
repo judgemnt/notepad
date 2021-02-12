@@ -15,7 +15,11 @@ const PageSchema = new Schema({
     notes: [NoteSchema],
     deleteNotes: [{
         type: String
-    }]
+    }],
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 module.exports = mongoose.model("Page", PageSchema)
