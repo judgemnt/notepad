@@ -3,13 +3,13 @@ const router = express.Router();
 const Page = require("../models/notepadschema");
 const notes = require("../controller/noteController")
 const catchAsync = require("../utilities/catchAsync");
-const { validateNotepad } = require("../middleware");
+const { validateNotepad, isLoggedIn } = require("../middleware");
 
 router.route("/")
     .get(catchAsync(notes.all))
-    .post(validateNotepad, catchAsync(notes.postNew))
+    .post(isLoggedIn, catchAsync(notes.postNew), validateNotepad)
 
-router.get("/new", notes.newForm);
+router.get("/new", isLoggedIn, notes.newForm);
 
 router.route("/:id")
     .get(notes.checkOne)
