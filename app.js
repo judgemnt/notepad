@@ -56,6 +56,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/notes", noteRoutes);
 app.use("/", userRoutes);
 
+app.get("/", (req, res) => {
+    res.render("notes/welcome");
+});
+
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page not Found", 404));
 });

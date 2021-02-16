@@ -1,4 +1,5 @@
 const Page = require("../models/notepadschema");
+
 module.exports.all = async (req, res) => {
     const pages = await Page.find({});
     res.render("notes/home", { pages });
